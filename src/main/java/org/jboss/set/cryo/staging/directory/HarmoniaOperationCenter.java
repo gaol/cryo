@@ -46,7 +46,13 @@ public class HarmoniaOperationCenter extends DirectoryOrientedOperationCenter {
         //INFO: tad cheat, since harmonia splits build and test
         final ProcessBuilder buildRepository = new ProcessBuilder(COMMAND_HARMONIA_BUILD);
         buildRepository.directory(repositoryLocation);
+        System.out.println("===================================================================");
+        System.out.println("  START BUILDING EAP !!!!!!! ");
+        System.out.println("===================================================================");
         OperationResult result = new ExecuteProcess(out,buildRepository).getProcessResult();
+        System.out.println("===================================================================");
+        System.out.println("  END OF BUILDING EAP !!!!!!! ");
+        System.out.println("===================================================================");
         if(result.getOutcome() == Outcome.FAILURE) {
             return result;
         }
