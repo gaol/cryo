@@ -58,6 +58,9 @@ public class HarmoniaOperationCenter extends DirectoryOrientedOperationCenter {
         }
         final ProcessBuilder testRepository = new ProcessBuilder(COMMAND_HARMONIA_TEST);
         testRepository.directory(repositoryLocation);
+        System.out.println("===================================================================");
+        System.out.println("  START TESTING EAP !!!!!!! ");
+        System.out.println("===================================================================");
         return new ExecuteProcess(out,testRepository).getProcessResult();
     }
 

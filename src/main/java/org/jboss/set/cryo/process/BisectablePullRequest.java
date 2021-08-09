@@ -185,10 +185,12 @@ public class BisectablePullRequest {
         }
 
         //INFO MERGE local root.
+        System.out.println("START MERGE PR: " + getId());
         final OperationResult result = this.operationCenter.mergePullRequest(this.getId());
         switch (result.getOutcome()) {
             case SUCCESS:
                 Main.log(Level.INFO, "[SUCCESS] Merge of: {0}", getId());
+                Main.log(Level.INFO, "output of merge: " + result.getOutput());
                 this.state = CryoPRState.MERGED;
                 final OperationResult read = this.readMergeCommitHash();
                 switch(read.getOutcome()) {
@@ -206,6 +208,7 @@ public class BisectablePullRequest {
                 //INFO: mark only this one for abort, rest will do regular. After reverse markNoMerge for whole tree
                 this.state = CryoPRState.NO_MERGE;
                 result.reportError();
+                Main.log(Level.WARNING, "FAILED TO MERGE: " + result.getOutput());
                 if(!reverse()) {
                     //TODO: make it better
                     throw new RuntimeException("[CRYO] Failed to clean up PR["+this.getPullRequest().getURL()+"], repository is in corrupted state. Exploding!");
