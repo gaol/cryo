@@ -51,7 +51,8 @@ public class ExecuteProcess {
     public OperationResult getProcessResult() {
         Process process = null;
         try {
-            Main.log(Level.INFO, "Commands of the proccess: " + String.join(" ", processBuilder.command()));
+            Main.log(Level.INFO, "Commands of the process: " + String.join(" ", processBuilder.command()));
+            Main.log(Level.INFO, "Process environment: " + processBuilder.environment());
             process = processBuilder.start();
             String output = "<EMPTY>";
             int result;
