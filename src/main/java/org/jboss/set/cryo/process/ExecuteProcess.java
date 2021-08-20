@@ -40,12 +40,14 @@ public class ExecuteProcess {
     public ExecuteProcess(PrintStream out, ProcessBuilder processBuilder) {
         super();
         this.processBuilder = processBuilder;
+        this.processBuilder.redirectErrorStream(true);
         this.out = out;
     }
 
     public ExecuteProcess(ProcessBuilder processBuilder) {
         super();
         this.processBuilder = processBuilder;
+        this.processBuilder.redirectErrorStream(true);
         this.out = null;
     }
     public OperationResult getProcessResult() {
