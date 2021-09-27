@@ -104,11 +104,11 @@ public class OperationResult {
             } else if (this.output != null && this.error == null) {
 //                Main.log(Level.SEVERE, "[FAILED]  {0}:[{1}] failed:\n{2} ",
 //                        new Object[] { custom,command, this.output });
-                throw new RuntimeException(String.format("[FAILED]  {0}:[{1}] failed:\n{2} ", custom, command, this.output));
+                throw new RuntimeException(String.format("[FAILED]  %s:[%s] failed:\n%s ", custom,command, this.output));
             } else {
 //                Main.log(Level.SEVERE, "[FAILED] {0}.Execution failed somehow.... {1}", new Object[] {custom,
 //                        String.join(" ", this.processBuilder.command().toArray(new String[0]))});
-                throw new RuntimeException(String.format("[FAILED] {0}.Execution failed somehow.... {1}", custom, String.join(" ", this.processBuilder.command().toArray(new String[0]))));
+                throw new RuntimeException(String.format("[FAILED] %s.Execution failed somehow.... %s", custom, String.join(" ", this.processBuilder.command().toArray(new String[0]))));
             }
         }
     }
