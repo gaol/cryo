@@ -125,8 +125,7 @@ public class Cryo {
             }
             this.operationCenter = this.operationCenter.initializeOperationCenter(new Object[] {this.repositoryLocation});
         } else {
-            Main.log(Level.SEVERE, "Failed to create OperationCenter...");
-            return false;
+            throw new RuntimeException("Failed to create OperationCenter...");
         }
         if (!determineRepositoryURL()) {
             return false;
@@ -252,9 +251,8 @@ public class Cryo {
             simpleContainer.register(PullRequestHome.class.getSimpleName(), GithubPullRequestHomeService);
             return true;
         } catch (AphroditeException e) {
-            Main.log("Failed to initialize aphrodite!", e);
+            throw new RuntimeException("Failed to initialize aphrodite!", e);
         }
-        return false;
     }
 
     /**

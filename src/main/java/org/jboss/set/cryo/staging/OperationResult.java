@@ -96,15 +96,19 @@ public class OperationResult {
         if (this.outcome == Outcome.FAILURE) {
             final String command = String.join(" ", this.processBuilder.command().toArray(new String[0]));
             if (this.output != null && this.error != null) {
-                Main.log("[FAILED] "+custom+":'"+command+"' failed '"+this.output+"' with:\n", this.error);
+//                Main.log("[FAILED] "+custom+":'"+command+"' failed '"+this.output+"' with:\n", this.error);
+                throw new RuntimeException("[FAILED] "+custom+":'"+command+"' failed '"+this.output+"' with:\n", this.error);
             } else if (this.output == null && this.error != null) {
-                Main.log("[FAILED] "+custom+":'"+command+"' failed with:\n",this.error);
+//                Main.log("[FAILED] "+custom+":'"+command+"' failed with:\n",this.error);
+                throw new RuntimeException("[FAILED] "+custom+":'"+command+"' failed with:\n", this.error);
             } else if (this.output != null && this.error == null) {
-                Main.log(Level.SEVERE, "[FAILED]  {0}:[{1}] failed:\n{2} ",
-                        new Object[] { custom,command, this.output });
+//                Main.log(Level.SEVERE, "[FAILED]  {0}:[{1}] failed:\n{2} ",
+//                        new Object[] { custom,command, this.output });
+                throw new RuntimeException(String.format("[FAILED]  {0}:[{1}] failed:\n{2} ", custom, command, this.output));
             } else {
-                Main.log(Level.SEVERE, "[FAILED] {0}.Execution failed somehow.... {1}", new Object[] {custom,
-                        String.join(" ", this.processBuilder.command().toArray(new String[0]))});
+//                Main.log(Level.SEVERE, "[FAILED] {0}.Execution failed somehow.... {1}", new Object[] {custom,
+//                        String.join(" ", this.processBuilder.command().toArray(new String[0]))});
+                throw new RuntimeException(String.format("[FAILED] {0}.Execution failed somehow.... {1}", custom, String.join(" ", this.processBuilder.command().toArray(new String[0]))));
             }
         }
     }
